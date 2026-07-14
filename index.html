@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cosmos — Solar System Simulation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="canvas"></canvas>
+
+      <!-- HUD -->
+      <div id="hud" class="hud">
+        <!-- Top bar -->
+        <header class="hud-top">
+          <div class="brand">
+            <div class="brand-mark" aria-hidden="true"></div>
+            <div class="brand-text">
+              <span class="brand-title">COSMOS</span>
+              <span class="brand-sub">Solar System Simulator</span>
+            </div>
+          </div>
+          <div class="status-pills">
+            <div class="pill">
+              <span class="pill-dot live"></span>
+              <span class="pill-label">SIM LIVE</span>
+            </div>
+            <div class="pill mono" id="fps-pill">60 FPS</div>
+          </div>
+        </header>
+
+        <!-- Left panel: body focus + info -->
+        <aside class="panel panel-left glass">
+          <div class="panel-header">
+            <h2>Bodies</h2>
+            <span class="panel-badge">9</span>
+          </div>
+          <div class="body-list" id="body-list" role="listbox" aria-label="Select celestial body"></div>
+          <div class="divider"></div>
+          <div class="info-card" id="info-card">
+            <h3 id="info-name">Sun</h3>
+            <dl class="info-grid">
+              <div>
+                <dt>Type</dt>
+                <dd id="info-type">Star</dd>
+              </div>
+              <div>
+                <dt>Radius</dt>
+                <dd id="info-radius">—</dd>
+              </div>
+              <div>
+                <dt>Orbital period</dt>
+                <dd id="info-period">—</dd>
+              </div>
+              <div>
+                <dt>Distance</dt>
+                <dd id="info-distance">—</dd>
+              </div>
+              <div>
+                <dt>Eccentricity</dt>
+                <dd id="info-ecc">—</dd>
+              </div>
+              <div>
+                <dt>Day length</dt>
+                <dd id="info-day">—</dd>
+              </div>
+            </dl>
+          </div>
+        </aside>
+
+        <!-- Right panel: time & view controls -->
+        <aside class="panel panel-right glass">
+          <div class="panel-header">
+            <h2>Time</h2>
+          </div>
+
+          <div class="time-display">
+            <div class="time-row">
+              <span class="time-label">Elapsed</span>
+              <span class="time-value mono" id="elapsed-display">0.00 d</span>
+            </div>
+            <div class="time-row">
+              <span class="time-label">Speed</span>
+              <span class="time-value mono" id="speed-display">60 d/s</span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="speed-slider">Time scale</label>
+            <input
+              type="range"
+              id="speed-slider"
+              min="0"
+              max="100"
+              value="40"
+              step="1"
+            />
+            <div class="preset-row" id="speed-presets">
+              <button type="button" class="chip" data-days="0">Pause</button>
+              <button type="button" class="chip" data-days="1">1×</button>
+              <button type="button" class="chip" data-days="10">10×</button>
+              <button type="button" class="chip active" data-days="60">60×</button>
+              <button type="button" class="chip" data-days="365">1y/s</button>
+              <button type="button" class="chip" data-days="3650">10y/s</button>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button type="button" class="btn btn-primary" id="play-pause" aria-pressed="true">
+              <span class="btn-icon" id="play-icon">❚❚</span>
+              <span id="play-label">Pause</span>
+            </button>
+            <button type="button" class="btn btn-ghost" id="reset-time">Reset</button>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="panel-header">
+            <h2>View</h2>
+          </div>
+
+          <div class="toggle-list">
+            <label class="toggle">
+              <input type="checkbox" id="toggle-orbits" checked />
+              <span class="toggle-track"></span>
+              <span class="toggle-text">Orbit paths</span>
+            </label>
+            <label class="toggle">
+              <input type="checkbox" id="toggle-labels" checked />
+              <span class="toggle-track"></span>
+              <span class="toggle-text">Labels</span>
+            </label>
+            <label class="toggle">
+              <input type="checkbox" id="toggle-asteroids" checked />
+              <span class="toggle-track"></span>
+              <span class="toggle-text">Asteroid belt</span>
+            </label>
+          </div>
+        </aside>
+
+        <!-- Bottom hint -->
+        <footer class="hud-footer">
+          <span>Drag to orbit · Scroll to zoom · Click a body to focus</span>
+        </footer>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
