@@ -25,32 +25,21 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
+          cache-dependency-path: Cosmos/package-lock.json
 
-      # Cosmos solar system → https://sarthak-2210.github.io/cosmos/
-      - name: Install & build Cosmos
+      - name: Install dependencies
         working-directory: Cosmos
-        run: |
-          npm ci
-          npm run build
+        run: npm ci
 
-      # Zombie Island → https://sarthak-2210.github.io/cosmos/island/
-      - name: Install & build Island
-        working-directory: island
-        run: |
-          npm ci
-          npm run build
-
-      - name: Assemble GitHub Pages site
-        run: |
-          rm -rf dist
-          mkdir -p dist/island
-          cp -a Cosmos/dist/. dist/
-          cp -a island/dist/. dist/island/
+      - name: Build
+        working-directory: Cosmos
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: Cosmos/dist
 
   deploy:
     needs: build

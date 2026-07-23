@@ -29,3 +29,8 @@ pnpm-debug.log*
 .env
 .env.*
 !.env.example
+
+# Standalone sibling repos (own git remotes)
+island/
+WorldFlag/
+AnalyticalThink/
