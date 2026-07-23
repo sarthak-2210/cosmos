@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zombie Island — Survive the Outbreak</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="game"></canvas>
+
+      <div id="hud" class="hidden">
+        <div class="top-bar">
+          <div class="stat">
+            <span class="label">WAVE</span>
+            <span id="wave-val" class="value">1</span>
+          </div>
+          <div class="stat">
+            <span class="label">KILLS</span>
+            <span id="kills-val" class="value">0</span>
+          </div>
+          <div class="stat">
+            <span class="label">ALIVE</span>
+            <span id="alive-val" class="value">0</span>
+          </div>
+        </div>
+
+        <div class="bottom-bar">
+          <div class="health-wrap">
+            <span class="label">HP</span>
+            <div class="bar">
+              <div id="health-fill" class="fill"></div>
+            </div>
+            <span id="health-val" class="value">100</span>
+          </div>
+          <div class="ammo-wrap">
+            <span id="ammo-val" class="ammo">30</span>
+            <span class="ammo-max">/ 30</span>
+            <span class="reload-hint" id="reload-hint"></span>
+          </div>
+        </div>
+
+        <div id="crosshair"></div>
+        <div id="hit-marker"></div>
+        <div id="damage-vignette"></div>
+        <div id="wave-banner" class="banner hidden"></div>
+        <div id="kill-feed"></div>
+      </div>
+
+      <div id="menu" class="screen">
+        <div class="menu-bg"></div>
+        <div class="menu-content">
+          <p class="eyebrow">OUTBREAK PROTOCOL</p>
+          <h1>ZOMBIE<br /><span>ISLAND</span></h1>
+          <p class="tagline">
+            You washed ashore. The dead followed.<br />
+            Hold the beach. Survive the night.
+          </p>
+          <button id="start-btn" class="cta">ENTER THE ISLAND</button>
+          <div class="controls">
+            <div><kbd>W A S D</kbd> Move</div>
+            <div><kbd>Mouse</kbd> Aim</div>
+            <div><kbd>Click</kbd> Shoot</div>
+            <div><kbd>R</kbd> Reload</div>
+            <div><kbd>Shift</kbd> Sprint</div>
+            <div><kbd>Space</kbd> Jump</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="gameover" class="screen hidden">
+        <div class="menu-content">
+          <p class="eyebrow danger">TRANSMISSION LOST</p>
+          <h1>YOU DIED</h1>
+          <p class="tagline" id="final-stats"></p>
+          <button id="retry-btn" class="cta">FIGHT AGAIN</button>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
